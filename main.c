@@ -2,6 +2,8 @@
 #include <string.h>
 #include <sys/wait.h>
 
+#define MAX_LEN 100
+
 void disp(void)
 {
 	printf("Welcome to Command-Line TIC TAC TOE!\n");       
@@ -14,17 +16,32 @@ void disp(void)
         printf("  7  |  8  |  9  \n");
 }
 
-void usrTurn(void)
+int board(int pos)
 {
-	char *resp;	
+	if (pos == 1)
+	{
+        	printf("  X  |     |     \n");
+        	printf("-----|-----|-----\n");
+        	printf("     |     |     \n");
+      		printf("-----|-----|-----\n");
+        	printf("     |     |     \n");
+	}
 
-	printf("Where would you like to place you X?: ");
-	scanf("%s", resp);
+}
+
+int usrTurn(char *resp)
+{
+
+	if (strcmp(resp, "1") == 0)
+	{
+		board(1);	
+	}
+
 }
 
 int main(int argc, char *argv[])
 {
-	char *cmd;
+	char cmd[MAX_LEN];
 
 	disp();
 	printf("Begin Game [y / n]: ");
@@ -32,7 +49,9 @@ int main(int argc, char *argv[])
 
 	if (strcmp(cmd, "y") == 0)
 	{
-		usrTurn();
+		printf("Where would you like to place your X?: ");
+  		scanf("%s", cmd);
+		usrTurn(cmd);
 	}
 
 }
